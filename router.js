@@ -25,7 +25,13 @@ router.route('/users')
 
 router.route('/users/:id')
     .get((req, res) => {
-
+        db
+            .findById(req.params.id)
+            .then(response => {
+                if(response.length === 0) res.status(404).json({ message: "The user with the specified ID does not exist." });
+                res.json(response);
+            })
+            .catch(err => res.status(500).json({ error: "The user information could not be retrieved." }));
     })
     .put((req, res) => {
 
