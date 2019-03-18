@@ -1,10 +1,10 @@
 import React from 'react';
-import NewUser from '../containers/NewUser';
+import UserForm from '../components/UserForm';
 
 export default () => {
     return (
         <>
-            <NewUser />
+            <UserForm registerForm={true} />
         </>
     );
 }
