@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './routes';
-import createBrowserHistory from 'history/createBrowserHistory';
+const createBrowserHistory =  require('history').createBrowserHistory;
 
 export const history = createBrowserHistory();
 
