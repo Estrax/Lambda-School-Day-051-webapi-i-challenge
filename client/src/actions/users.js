@@ -60,7 +60,7 @@ export function fetchUsers(){
 export function fetchUser(id){
     return dispatch => {
         dispatch(requestFetch(id))
-        axios
+        return axios
             .get(API_URL+`/users/${id}`)
             .then(res => {
                 if(res.status===200){
@@ -102,7 +102,7 @@ export function addUser(user){
         axios
             .post(API_URL+`/users/`, user)
             .then(res => {
-                if(res.status===200){
+                if(res.status===201){
                     dispatch(receiveAdd(res.data));
                     history.push(`/${res.data.id}`);
                 }else{

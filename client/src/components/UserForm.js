@@ -66,6 +66,7 @@ class UserForm extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <>
                 <FormComponent onSubmit={this.props.registerForm ? this.addUser : this.updateUser} className="card">
@@ -103,9 +104,8 @@ class UserForm extends Component {
 
 const mapStateToProps = state => {
     return {
-        userID: state.user ? state.user.id : -1,
-        name: state.user ? state.user.name : '',
-        bio: state.user ? state.user.bio : '',
+        name: state.users.user ? state.users.user.name : '',
+        bio: state.users.user ? state.users.user.bio : '',
     }
 }
 

@@ -4,7 +4,7 @@ import EditUser from '../containers/EditUser';
 export default (props) => {
     return (
         <>
-            <EditUser toolID={Number(props.match.params.id)} />
+            <EditUser userID={Number(props.match.params.id)} />
         </>
     );
 }
