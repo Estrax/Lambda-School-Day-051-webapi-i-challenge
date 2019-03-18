@@ -29,7 +29,7 @@ router.route('/users/:id')
             .findById(req.params.id)
             .then(response => {
                 if(response.length === 0) res.status(404).json({ message: "The user with the specified ID does not exist." });
-                res.json(response);
+                res.status(200).json(response);
             })
             .catch(err => res.status(500).json({ error: "The user information could not be retrieved." }));
     })
@@ -41,18 +41,30 @@ router.route('/users/:id')
             .update(req.params.id, { name, bio, updated_at: new Date().toString() })
             .then(response => {
                 if(response === 0) res.status(404).json({ message: "The user with the specified ID does not exist." });
-                res.status(200).json(response);
+                db
+                    .findById(req.params.id)
+                    .then(response => {
+                        if(response.length === 0) res.status(404).json({ message: "The user with the specified ID does not exist." });
+                        res.status(200).json(response);
+                    })
+                    .catch(err => res.status(500).json({ error: "The user information could not be retrieved." }));
             })
             .catch(err => res.status(500).json({ error: "The user information could not be modified." }));
     })
     .delete((req, res) => {
         db
-            .remove(req.params.id)
-            .then(response => {
-                if(response === 0) res.status(404).json({ message: "The user with the specified ID does not exist." });
-                res.json(response);
+            .findById(req.params.id)
+            .then(user => {
+                if(user.length === 0) res.status(404).json({ message: "The user with the specified ID does not exist." });
+                db
+                    .remove(req.params.id)
+                    .then(response => {
+                        if(response === 0) res.status(404).json({ message: "The user with the specified ID does not exist." });
+                        res.status(200).json({...user, removed: true});
+                    })
+                    .catch(err => res.status(500).json({ error: "The user could not be removed." }));
             })
-            .catch(err => res.status(500).json({ error: "The user could not be removed." }));
+            .catch(err => res.status(500).json({ error: "The user information could not be retrieved." }));
     });
 
 module.exports = router;
