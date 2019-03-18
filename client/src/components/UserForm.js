@@ -32,7 +32,7 @@ class UserForm extends Component {
     
     componentDidMount() {
         if(!this.props.registerForm){
-            this.props.getUserData(this.props.userID).then(_ => {
+            this.props.fetchUser(this.props.userID).then(_ => {
                 this.setState({
                     name: this.props.name,
                     bio: this.props.bio

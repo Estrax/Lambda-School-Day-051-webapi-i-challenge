@@ -1,10 +1,10 @@
 import React from 'react';
 import EditUser from '../containers/EditUser';
 
-export default () => {
+export default (props) => {
     return (
         <>
-            <EditUser />
+            <EditUser toolID={Number(props.match.params.id)} />
         </>
     );
 }
