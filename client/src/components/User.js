@@ -67,7 +67,12 @@ const User = (props) => {
 
 
 User.propTypes = {
-    fetchUser: PropTypes.func.isRequired
+    fetchUser: PropTypes.func.isRequired,
+    editUser: PropTypes.func,
+    deleteUser: PropTypes.func,
+    name: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+    singleUser: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import User from '../containers/User';
+import UserContainer from '../containers/User';
 import { connect } from 'react-redux';
 import { fetchUser, fetchUsers, deleteUser } from '../actions';
 import { history } from '../';
@@ -28,23 +28,29 @@ class UserPage extends Component {
     }
 
     render() {
-        console.log(this.props.user);
         return (
             <>
-                {this.props.user && <User userID={this.props.userID} user={this.props.user} editUser={this.editUser} deleteUser={this.deleteUser} users={this.props.users} />}
+                {this.props.user && <UserContainer user={this.props.user} editUser={this.editUser} deleteUser={this.deleteUser} users={this.props.users} />}
             </>
         );
     }
 }
 
-User.propTypes = {
-    
+UserPage.propTypes = {
+    users: PropTypes.array.isRequired,
+    user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        bio: PropTypes.string.isRequired
+    }).isRequired,
+    fetchUser: PropTypes.func.isRequired,
+    fetchUsers: PropTypes.func.isRequired,
+    deleteUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
     return {
         user: state.users.user ? state.users.user : {id: -1, name: '', bio: ''},
-        userID: state.users.user ? state.users.user.id : -1,
         users: state.users.users ? state.users.users : []
     }
 }

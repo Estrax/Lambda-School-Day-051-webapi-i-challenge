@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addUser, updateUser, fetchUser } from '../actions';
 import styled from 'styled-components';
 import { SubmitBtn } from '../styles';
+import PropTypes from 'prop-types';
 
 const FormComponent = styled.form`
     width: 18rem;
@@ -100,6 +101,15 @@ class UserForm extends Component {
             </>
         );
     }
+}
+
+UserForm.propTypes = {
+    name: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+    registerForm: PropTypes.bool.isRequired,
+    addUser: PropTypes.func.isRequired,
+    updateUser: PropTypes.func.isRequired,
+    fetchUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {

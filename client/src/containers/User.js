@@ -1,7 +1,8 @@
 import React from 'react';
 import User from '../components/User';
+import PropTypes from 'prop-types';
 
-export default (props) => {
+const UserContainer = (props) => {
     return (
         <>
             <User
@@ -11,9 +12,20 @@ export default (props) => {
                 bio={props.user.bio}
                 editUser={props.editUser}
                 deleteUser={props.deleteUser}
-                userID={props.userID}
                 singleUser={true}
             />
         </>
     );
 }
+
+UserContainer.propTypes = {
+    user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        bio: PropTypes.string.isRequired
+    }).isRequired,
+    editUser: PropTypes.func.isRequired,
+    deleteUser: PropTypes.func.isRequired
+}
+
+export default UserContainer;

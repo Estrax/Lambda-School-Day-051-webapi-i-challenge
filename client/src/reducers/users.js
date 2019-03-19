@@ -68,41 +68,35 @@ export default (state = initialState, action) => {
         
         case USER_ADD_REQUEST:
             return {
-                ...state,
-                isFetching: true
+                ...state
             }
         
         case USER_ADD_SUCCESS:
             return {
                 ...state,
-                isFetching: false,
                 user: action.payload
             }
         
         case USER_ADD_FAILURE:
             return {
                 ...state,
-                isFetching: false,
                 error: action.payload
             }
 
         case USER_UPDATE_REQUEST:
             return {
-                ...state,
-                isFetching: true
+                ...state
             }
         
         case USER_UPDATE_SUCCESS:
             return {
                 ...state,
-                isFetching: false,
                 user: action.payload
             }
         
         case USER_UPDATE_FAILURE:
             return {
                 ...state,
-                isFetching: false,
                 error: action.payload
             }
         

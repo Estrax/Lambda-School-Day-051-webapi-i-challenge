@@ -31,6 +31,11 @@ class UsersPage extends Component {
     }
 }
 
+UsersPage.propTypes = {
+    users: PropTypes.array.isRequired,
+    fetchUsers: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => {
     return {
         users: state.users.users || []
